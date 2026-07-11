@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIATUP</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#0b1120;color:#e2e8f0;overflow-x:hidden}
+
+/* PALETA */
+:root{
+  --blue-900:#0f2847;--blue-700:#1a4b8c;--blue-500:#2563eb;--blue-400:#3b82f6;--blue-300:#60a5fa;--blue-200:#93c5fd;--blue-100:#dbeafe;
+  --green-700:#047857;--green-500:#10b981;--green-400:#34d399;--green-300:#6ee7b7;--green-100:#d1fae5;
+  --slate-900:#0f172a;--slate-800:#1e293b;--slate-700:#334155;--slate-600:#475569;--slate-500:#64748b;--slate-400:#94a3b8;--slate-300:#cbd5e1;--slate-200:#e2e8f0;
+  --red-400:#f87171;--red-500:#ef4444;--orange-400:#fb923c;--purple-400:#c084fc;--pink-400:#f472b6;
+}
+
+/* NAV */
+.nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(11,17,32,0.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(37,99,235,0.15);padding:14px 48px;display:flex;justify-content:space-between;align-items:center}
+.nav-logo{font-weight:800;font-size:1.3rem;color:var(--blue-400);letter-spacing:-0.5px}
+.nav-links{display:flex;gap:28px}
+.nav-links a{color:var(--slate-400);text-decoration:none;font-size:0.85rem;font-weight:500;transition:color .3s}
+.nav-links a:hover{color:var(--blue-300)}
+
+/* SLIDES */
+.slide{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:100px 80px;position:relative}
+.slide-content{max-width:1200px;width:100%}
+.section-label{font-size:0.8rem;text-transform:uppercase;letter-spacing:3px;font-weight:700;margin-bottom:16px}
+.section-title{font-size:2.6rem;font-weight:800;letter-spacing:-1.5px;margin-bottom:36px;line-height:1.15;color:var(--slate-200)}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0b1120 0%,#132044 50%,#0f172a 100);overflow:hidden;position:relative}
+.hero::before{content:'';position:absolute;top:-40%;right:-15%;width:700px;height:700px;background:radial-gradient(circle,rgba(37,99,235,0.1) 0%,transparent 70%)}
+.hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(16,185,129,0.07) 0%,transparent 70%)}
+.hero .slide-content{position:relative;z-index:2;text-align:center}
+.hero-badge{display:inline-block;background:rgba(37,99,235,0.12);border:1px solid rgba(37,99,235,0.25);padding:8px 24px;border-radius:50px;font-size:0.8rem;font-weight:600;color:var(--blue-300);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:32px}
+.hero h1{font-size:3.8rem;font-weight:900;line-height:1.05;letter-spacing:-2.5px;margin-bottom:20px;color:var(--slate-200)}
+.hero h1 span{background:linear-gradient(135deg,var(--blue-400),var(--green-400));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:1.25rem;color:var(--slate-400);font-weight:300;max-width:720px;margin:0 auto 48px;line-height:1.65}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:920px;margin:0 auto}
+.stat-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:28px 20px;text-align:center;transition:transform .3s,border-color .3s}
+.stat-card:hover{transform:translateY(-4px);border-color:rgba(37,99,235,0.3)}
+.stat-number{font-size:2.6rem;font-weight:800;background:linear-gradient(135deg,var(--blue-400),var(--green-400));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-label{font-size:0.75rem;color:var(--slate-500);text-transform:uppercase;letter-spacing:1px;margin-top:8px;font-weight:600}
+
+/* BACKGROUNDS */
+.s1{background:linear-gradient(180deg,var(--slate-900),#131b30)}
+.s2{background:linear-gradient(180deg,#131b30,var(--slate-900))}
+.s3{background:linear-gradient(180deg,#0b1120,#151d33)}
+.s4{background:linear-gradient(180deg,#151d33,#0b1120)}
+
+/* CARDS */
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:32px;transition:all .3s}
+.card:hover{transform:translateY(-3px);border-color:rgba(37,99,235,0.25)}
+.card h3{font-size:1.15rem;font-weight:700;margin-bottom:12px;color:var(--slate-200)}
+.card p{font-size:0.95rem;color:var(--slate-400);line-height:1.7}
+.icon-box{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.icon-box svg{width:26px;height:26px}
+.tag{display:inline-block;background:rgba(16,185,129,0.12);color:var(--green-400);font-size:0.7rem;padding:4px 14px;border-radius:20px;font-weight:600;margin-top:14px;letter-spacing:0.5px}
+
+.card-red{border-color:rgba(239,68,68,0.15)}
+.card-red h3{color:var(--red-400)}
+.card-blue{border-color:rgba(37,99,235,0.15)}
+.card-blue h3{color:var(--blue-300)}
+.card-green{border-color:rgba(16,185,129,0.15)}
+.card-green h3{color:var(--green-400)}
+
+/* CICLO */
+.cycle-row{display:flex;align-items:stretch;margin-bottom:14px;background:rgba(255,255,255,0.02);border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.05)}
+.cycle-label{min-width:260px;padding:16px 20px;font-size:0.9rem;font-weight:700;display:flex;align-items:center;border-right:1px solid rgba(255,255,255,0.06)}
+.cycle-phases{display:flex;align-items:center;flex:1;padding:12px 20px;gap:6px;flex-wrap:wrap}
+.phase{background:rgba(37,99,235,0.08);border:1px solid rgba(37,99,235,0.18);border-radius:10px;padding:10px 18px;font-size:0.85rem;font-weight:600;color:var(--blue-200);white-space:nowrap}
+.phase-arrow{color:var(--blue-400);font-size:1.2rem;padding:0 4px}
+.cl-blue{background:rgba(37,99,235,0.06);color:var(--blue-300)}
+.cl-green{background:rgba(16,185,129,0.06);color:var(--green-400)}
+.cl-purple{background:rgba(192,132,252,0.06);color:var(--purple-400)}
+.cl-orange{background:rgba(251,146,60,0.06);color:var(--orange-400)}
+.cl-pink{background:rgba(244,114,182,0.06);color:var(--pink-400)}
+
+/* AGENTES */
+.agent-card{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:22px 16px;text-align:center;transition:all .3s}
+.agent-card:hover{border-color:rgba(37,99,235,0.3);transform:translateY(-3px)}
+.agent-icon{width:48px;height:48px;border-radius:12px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center}
+.agent-name{font-size:0.85rem;font-weight:700;color:var(--slate-200)}
+.agent-role{font-size:0.75rem;color:var(--slate-500);margin-top:4px}
+.agent-model{display:inline-block;font-size:0.65rem;padding:3px 10px;border-radius:10px;margin-top:8px;font-weight:600}
+.m-opus{background:rgba(192,132,252,0.15);color:var(--purple-400)}
+.m-sonnet{background:rgba(37,99,235,0.15);color:var(--blue-300)}
+.m-haiku{background:rgba(16,185,129,0.15);color:var(--green-400)}
+
+/* KB */
+.kb-card{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:28px;text-align:center;transition:all .3s}
+.kb-card:hover{border-color:rgba(16,185,129,0.3);transform:translateY(-3px)}
+.kb-number{font-size:2.2rem;font-weight:800;color:var(--green-400)}
+.kb-card h3{font-size:0.95rem;font-weight:700;margin-top:6px;color:var(--slate-200)}
+.kb-desc{font-size:0.8rem;color:var(--slate-500);margin-top:6px;line-height:1.5}
+
+/* TABELA */
+.compare-table{width:100%;border-collapse:collapse;margin-top:28px}
+.compare-table th{font-size:0.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--slate-500);padding:16px;text-align:left;border-bottom:2px solid rgba(37,99,235,0.2)}
+.compare-table td{padding:16px;font-size:0.95rem;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--slate-300)}
+.td-red{color:var(--red-400) !important}
+.td-green{color:var(--green-400) !important;font-weight:600}
+
+/* SEGURANCA */
+.sec-card{background:rgba(16,185,129,0.04);border:1px solid rgba(16,185,129,0.12);border-radius:14px;padding:28px;transition:all .3s}
+.sec-card:hover{border-color:rgba(16,185,129,0.3);transform:translateY(-3px)}
+.sec-card h3{font-size:1rem;font-weight:700;color:var(--green-400);margin-bottom:8px}
+.sec-card p{font-size:0.9rem;color:var(--slate-400);line-height:1.7}
+
+/* CTA */
+.cta{text-align:center}
+.cta h2{font-size:2.8rem;font-weight:900;margin-bottom:20px;letter-spacing:-1.5px;color:var(--slate-200)}
+.cta p{font-size:1.1rem;color:var(--slate-400);margin-bottom:40px;max-width:620px;margin-left:auto;margin-right:auto;line-height:1.7}
+.cta-btn{display:inline-block;background:linear-gradient(135deg,var(--blue-500),var(--green-500));color:white;padding:18px 52px;border-radius:14px;font-size:1.1rem;font-weight:700;text-decoration:none;transition:transform .3s,box-shadow .3s;letter-spacing:0.3px}
+.cta-btn:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(37,99,235,0.25)}
+
+.note{font-size:0.8rem;color:var(--slate-500);text-align:center;margin-top:24px;line-height:1.6}
+.leg-box{margin-top:28px;background:rgba(37,99,235,0.04);border:1px solid rgba(37,99,235,0.12);border-radius:14px;padding:24px}
+.leg-box h3{font-size:1rem;color:var(--blue-300);margin-bottom:10px;font-weight:700}
+.leg-box p{font-size:0.88rem;color:var(--slate-400);line-height:2}
+.confid{font-size:0.7rem;color:var(--slate-600);text-align:center;padding:24px;letter-spacing:1.5px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,0.04)}
+
+/* DATASHOW / TELA GRANDE (1920px+) */
+@media(min-width:1920px){
+  html{font-size:20px}
+  .slide{padding:120px 100px}
+  .hero h1{font-size:4.5rem}
+  .section-title{font-size:3rem}
+  .stat-number{font-size:3.2rem}
+  .kb-number{font-size:2.8rem}
+  .slide-content{max-width:1400px}
+}
+
+/* TELA MÉDIA-GRANDE (1200-1919px) */
+@media(min-width:1200px) and (max-width:1919px){
+  html{font-size:18px}
+  .slide{padding:100px 80px}
+}
+
+/* TABLET LANDSCAPE / NOTEBOOK (900-1199px) */
+@media(min-width:900px) and (max-width:1199px){
+  html{font-size:16px}
+  .slide{padding:80px 48px}
+  .hero h1{font-size:2.8rem}
+  .section-title{font-size:2rem}
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+}
+
+/* TABLET PORTRAIT (600-899px) */
+@media(min-width:600px) and (max-width:899px){
+  html{font-size:15px}
+  .slide{padding:70px 32px}
+  .hero h1{font-size:2.2rem}
+  .section-title{font-size:1.7rem}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .grid-2,.grid-3{grid-template-columns:1fr}
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+  .cycle-row{flex-direction:column}
+  .cycle-label{min-width:auto;border-right:none;border-bottom:1px solid rgba(255,255,255,0.06)}
+  .nav-links{display:none}
+  .nav{padding:12px 24px}
+  .compare-table{font-size:0.8rem}
+  .compare-table th,.compare-table td{padding:10px 8px}
+}
+
+/* CELULAR (até 599px) */
+@media(max-width:599px){
+  html{font-size:14px}
+  .slide{padding:60px 18px;min-height:auto}
+  .hero{min-height:100vh}
+  .hero h1{font-size:1.8rem;letter-spacing:-1px}
+  .hero-sub{font-size:1rem}
+  .hero-badge{font-size:0.65rem;padding:6px 14px}
+  .section-title{font-size:1.5rem;margin-bottom:24px}
+  .section-label{font-size:0.65rem}
+  .hero-stats{grid-template-columns:repeat(2,1fr);gap:12px}
+  .stat-card{padding:18px 12px}
+  .stat-number{font-size:1.8rem}
+  .stat-label{font-size:0.6rem}
+  .grid-2,.grid-3{grid-template-columns:1fr;gap:16px}
+  .grid-4{grid-template-columns:repeat(2,1fr);gap:12px}
+  .card{padding:22px}
+  .card h3{font-size:1rem}
+  .card p{font-size:0.85rem}
+  .cycle-row{flex-direction:column}
+  .cycle-label{min-width:auto;border-right:none;border-bottom:1px solid rgba(255,255,255,0.06);font-size:0.8rem;padding:12px 14px}
+  .cycle-phases{padding:10px 12px;gap:4px}
+  .phase{padding:6px 10px;font-size:0.7rem}
+  .phase-arrow{font-size:0.9rem}
+  .agent-card{padding:14px 10px}
+  .agent-name{font-size:0.75rem}
+  .agent-role{font-size:0.6rem}
+  .kb-card{padding:18px}
+  .kb-number{font-size:1.6rem}
+  .kb-card h3{font-size:0.85rem}
+  .sec-card{padding:18px}
+  .sec-card h3{font-size:0.9rem}
+  .sec-card p{font-size:0.8rem}
+  .nav-links{display:none}
+  .nav{padding:10px 16px}
+  .nav-logo{font-size:1.1rem}
+  .compare-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .compare-table th,.compare-table td{padding:10px 8px;font-size:0.75rem;white-space:nowrap}
+  .cta h2{font-size:1.8rem}
+  .cta p{font-size:0.9rem}
+  .cta-btn{padding:14px 32px;font-size:0.95rem}
+  .leg-box p{font-size:0.75rem;line-height:1.7}
+  .icon-box{width:42px;height:42px}
+  .icon-box svg{width:22px;height:22px}
+  .tag{font-size:0.6rem;padding:3px 10px}
+}
+
+/* IMPRESSÃO */
+@media print{
+  body{background:white;color:#1e293b}
+  .nav{display:none}
+  .slide{min-height:auto;padding:40px;page-break-after:always}
+  .card,.sec-card,.kb-card,.agent-card,.stat-card{border:1px solid #e2e8f0;background:white}
+  .hero{background:white}
+  .hero h1 span{-webkit-text-fill-color:#2563eb}
+  .stat-number,.kb-number{-webkit-text-fill-color:#10b981}
+  .confid{border-top:1px solid #e2e8f0}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+<div class="nav-logo">SIATUP</div>
+<div class="nav-links">
+<a href="#cenario">Cenário</a>
+<a href="#solucao">Solução</a>
+<a href="#ciclo">Ciclo de Vida</a>
+<a href="#agentes">Agentes</a>
+<a href="#base">Base Legal</a>
+<a href="#seguranca">Segurança</a>
+<a href="#contato">Contato</a>
+</div>
+</nav>
+
+<section class="slide hero">
+<div class="slide-content">
+<div class="hero-badge">Inteligência Artificial para Governo</div>
+<h1><span>SIATUP</span><br>Análise Inteligente de<br>Transferências da União</h1>
+<p class="hero-sub">Controle estruturado. Conformidade normativa. Segurança institucional.<br>Análise automatizada de todas as modalidades de transferências e parcerias federais.</p>
+<div class="hero-stats">
+<div class="stat-card"><div class="stat-number">28</div><div class="stat-label">Agentes Especializados</div></div>
+<div class="stat-card"><div class="stat-number">493</div><div class="stat-label">Regras Automatizadas</div></div>
+<div class="stat-card"><div class="stat-number">15.867</div><div class="stat-label">Documentos Indexados</div></div>
+<div class="stat-card"><div class="stat-number">10</div><div class="stat-label">Modalidades Cobertas</div></div>
+</div>
+</div>
+</section>
+
+<section class="slide s1" id="cenario">
+<div class="slide-content">
+<div class="section-label" style="color:var(--orange-400)">O Cenário Atual</div>
+<h2 class="section-title">Dados oficiais revelam o tamanho do desafio</h2>
+<div class="grid-3">
+<div class="card card-red"><div class="icon-box" style="background:rgba(239,68,68,0.08)"><svg fill="none" stroke="var(--red-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><h3>R$ 58,7 bilhões de Déficit Primário em 2025</h3><p>Contas de 2025 aprovadas com ressalvas pelo TCU em junho de 2026, com 12 ressalvas contábeis e 11 alertas formais ao Executivo.</p><p style="font-size:.75rem;color:var(--slate-600);margin-top:10px">Fonte: TCU, Contas do Presidente 2025 (Acórdão 1.442/2026)</p></div>
+<div class="card card-red"><div class="icon-box" style="background:rgba(239,68,68,0.08)"><svg fill="none" stroke="var(--red-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div><h3>Restos a Pagar de Emendas em Alta</h3><p>TCU aponta crescimento consistente dos restos a pagar nas emendas RP6 (individuais), RP7 (bancada) e RP8 (comissão), além de falta de transparência nas despesas com emendas parlamentares.</p><p style="font-size:.75rem;color:var(--slate-600);margin-top:10px">Fonte: TCU, Execução Orçamentária 2025</p></div>
+<div class="card card-red"><div class="icon-box" style="background:rgba(239,68,68,0.08)"><svg fill="none" stroke="var(--red-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01M5.07 19H19a2 2 0 001.75-2.97L13.75 4a2 2 0 00-3.5 0L3.32 16.03A2 2 0 005.07 19z"/></svg></div><h3>77+ Normas em Constante Mudança</h3><p>LC 210/2024, LC 221/2025, EC 105/2019, Decreto 11.531/2023, IN TCU 93/2024 e dezenas de portarias. Complexidade estrutural que cresce a cada ano.</p><p style="font-size:.75rem;color:var(--slate-600);margin-top:10px">Fonte: Levantamento normativo SIATUP, 2026</p></div>
+</div>
+</div>
+</section>
+
+<section class="slide s2" id="solucao">
+<div class="slide-content">
+<div class="section-label" style="color:var(--blue-300)">A Solução</div>
+<h2 class="section-title">Inteligência aplicada à governança de transferências</h2>
+<div class="grid-2">
+<div class="card card-blue"><div class="icon-box" style="background:rgba(37,99,235,0.08)"><svg fill="none" stroke="var(--blue-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><h3>Análise Completa em Minutos</h3><p>Envie o documento e receba análise com fundamentação legal, riscos identificados e recomendações. O que levava dias, agora leva minutos.</p><span class="tag">Dias para Minutos</span></div>
+<div class="card card-blue"><div class="icon-box" style="background:rgba(37,99,235,0.08)"><svg fill="none" stroke="var(--blue-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div><h3>Dossiê Completo por Instrumento</h3><p>Parecer jurídico, análise financeira, mapa de riscos, checklist legal, alertas de prazo e relatório PDF. Tudo fundamentado na legislação vigente.</p><span class="tag">PDF Profissional</span></div>
+<div class="card card-blue"><div class="icon-box" style="background:rgba(37,99,235,0.08)"><svg fill="none" stroke="var(--blue-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div><h3>Zero Alucinação — Guardian</h3><p>Cada resposta é verificada contra a base legal antes de ser entregue. Se não está na base, não entra no parecer. Política de zero fabricação.</p><span class="tag">Anti-Alucinação</span></div>
+<div class="card card-blue"><div class="icon-box" style="background:rgba(37,99,235,0.08)"><svg fill="none" stroke="var(--blue-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg></div><h3>Todas as Modalidades</h3><p>Convênios, contratos de repasse, MROSC, TED, emendas parlamentares (incluindo PIX), transferências constitucionais, legais e fundo a fundo.</p><span class="tag">10 Modalidades</span></div>
+</div>
+</div>
+</section>
+
+<section class="slide s3" id="ciclo">
+<div class="slide-content">
+<div class="section-label" style="color:var(--green-400)">Ciclo de Vida</div>
+<h2 class="section-title">Fases por instrumento de transferência</h2>
+<div class="cycle-row"><div class="cycle-label cl-blue">Convênio / Contrato de Repasse</div><div class="cycle-phases"><div class="phase">Proposta</div><span class="phase-arrow">→</span><div class="phase">Celebração</div><span class="phase-arrow">→</span><div class="phase">Execução</div><span class="phase-arrow">→</span><div class="phase">Prestação de Contas</div><span class="phase-arrow">→</span><div class="phase">TCE</div></div></div>
+<div class="cycle-row"><div class="cycle-label cl-green">Termo de Fomento / Colaboração (MROSC)</div><div class="cycle-phases"><div class="phase">Planejamento</div><span class="phase-arrow">→</span><div class="phase">Seleção</div><span class="phase-arrow">→</span><div class="phase">Celebração</div><span class="phase-arrow">→</span><div class="phase">Execução</div><span class="phase-arrow">→</span><div class="phase">Prestação de Contas</div><span class="phase-arrow">→</span><div class="phase">TCE</div></div></div>
+<div class="cycle-row"><div class="cycle-label cl-purple">TED (Execução Descentralizada)</div><div class="cycle-phases"><div class="phase">Proposta</div><span class="phase-arrow">→</span><div class="phase">Celebração</div><span class="phase-arrow">→</span><div class="phase">Execução</div><span class="phase-arrow">→</span><div class="phase">Prestação de Contas</div><span class="phase-arrow">→</span><div class="phase">TCE</div></div></div>
+<div class="cycle-row"><div class="cycle-label cl-orange">Transferências Especiais (Emendas PIX)</div><div class="cycle-phases"><div class="phase">Indicação</div><span class="phase-arrow">→</span><div class="phase">Impedimentos</div><span class="phase-arrow">→</span><div class="phase">Depósito</div><span class="phase-arrow">→</span><div class="phase">Aplicação</div><span class="phase-arrow">→</span><div class="phase">Prestação de Contas</div></div></div>
+<div class="cycle-row"><div class="cycle-label cl-pink">Constitucionais / Legais / Fundo a Fundo</div><div class="cycle-phases"><div class="phase">Cálculo</div><span class="phase-arrow">→</span><div class="phase">Distribuição</div><span class="phase-arrow">→</span><div class="phase">Aplicação</div><span class="phase-arrow">→</span><div class="phase">Prestação de Contas</div><span class="phase-arrow">→</span><div class="phase">Fiscalização</div></div></div>
+<p class="note">O SIATUP analisa cada fase de cada instrumento com legislação específica e regras determinísticas.</p>
+</div>
+</section>
+
+<section class="slide s4">
+<div class="slide-content">
+<div class="section-label" style="color:var(--purple-400)">Instrumentos</div>
+<h2 class="section-title">Cobertura normativa por modalidade</h2>
+<div class="grid-2">
+<div class="card card-green"><div class="icon-box" style="background:rgba(16,185,129,0.08)"><svg fill="none" stroke="var(--green-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg></div><h3>Convênio / Contrato de Repasse</h3><p>Decreto 11.531/2023, PC CGU/MF/MGI 33/2023, Decreto 6.170/2007, 11 ONs AGU, IN STN 1/1997. Cobertura completa do ciclo de vida.</p><span class="tag">Principal — 70% das transferências voluntárias</span></div>
+<div class="card card-green"><div class="icon-box" style="background:rgba(16,185,129,0.08)"><svg fill="none" stroke="var(--green-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div><h3>Termo de Fomento / Colaboração (MROSC)</h3><p>Lei 13.019/2014, Decreto 8.726/2016. Parcerias com OSCs: chamamento público, plano de trabalho, monitoramento e prestação de contas.</p><span class="tag">Marco Regulatório das OSCs</span></div>
+<div class="card card-green"><div class="icon-box" style="background:rgba(16,185,129,0.08)"><svg fill="none" stroke="var(--green-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg></div><h3>TED (Execução Descentralizada)</h3><p>Decreto 10.426/2020, Decreto 11.271/2022. Transferências entre órgãos da administração federal direta e indireta.</p><span class="tag">Entre órgãos federais</span></div>
+<div class="card card-green"><div class="icon-box" style="background:rgba(251,146,60,0.08)"><svg fill="none" stroke="var(--orange-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><h3>Transferências Especiais (Emendas PIX)</h3><p>EC 105/2019, Decreto 11.339/2023, LC 210/2024 e LDOs anuais. Depósito direto sem convênio. 26 impedimentos técnicos monitorados.</p><span class="tag">LC 210/2024 — Novo Marco</span></div>
+</div>
+<p class="note">Classificação orçamentária das emendas: RP6 Individuais (limite 2% RCL, inclui Transferências Especiais PIX) | RP7 Bancada (limite 1% RCL) | RP8 Comissão — todas monitoradas pelo SIATUP. + Constitucionais (FPE, FPM, FUNDEB) | Legais (SUS, SUAS, FNDE) | Fundo a Fundo | Extraordinárias</p>
+</div>
+</section>
+
+<section class="slide s1">
+<div class="slide-content">
+<div class="section-label" style="color:var(--blue-300)">Como Funciona</div>
+<h2 class="section-title">Simples para você. Poderoso nos bastidores.</h2>
+<div class="grid-3">
+<div class="card card-blue" style="text-align:center"><div class="icon-box" style="background:rgba(37,99,235,0.08);margin:0 auto 16px"><svg fill="none" stroke="var(--blue-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg></div><h3 style="color:var(--blue-300)">1. Você Envia</h3><p>O PDF do instrumento, número do convênio, TED ou emenda, ou as informações disponíveis. Sem formulários complexos.</p></div>
+<div class="card card-blue" style="text-align:center"><div class="icon-box" style="background:rgba(37,99,235,0.08);margin:0 auto 16px"><svg fill="none" stroke="var(--blue-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div><h3 style="color:var(--blue-300)">2. O Sistema Analisa</h3><p>28 agentes cruzam o documento com toda a legislação, verificam conformidade, calculam riscos e identificam pendências. Em minutos.</p></div>
+<div class="card card-blue" style="text-align:center"><div class="icon-box" style="background:rgba(37,99,235,0.08);margin:0 auto 16px"><svg fill="none" stroke="var(--blue-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><h3 style="color:var(--blue-300)">3. Você Recebe</h3><p>Dossiê completo: parecer jurídico, análise técnica e financeira, mapa de riscos, checklist e recomendações. Pronto para decisão.</p></div>
+</div>
+<p style="text-align:center;color:var(--slate-300);font-size:1rem;margin-top:28px;font-weight:600">O sistema NÃO inventa. Só analisa com base na lei.</p>
+</div>
+</section>
+
+<section class="slide s2" id="agentes">
+<div class="slide-content">
+<div class="section-label" style="color:var(--purple-400)">Inteligência Artificial</div>
+<h2 class="section-title">28 Agentes Especializados</h2>
+<div class="grid-4">
+<div class="agent-card"><div class="agent-icon" style="background:rgba(192,132,252,0.08)"><svg width="22" height="22" fill="none" stroke="var(--purple-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><div class="agent-name">Jarvis</div><div class="agent-role">Orquestrador mestre — supervisiona os 28</div></div>
+<div class="agent-card"><div class="agent-icon" style="background:rgba(37,99,235,0.08)"><svg width="22" height="22" fill="none" stroke="var(--blue-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg></div><div class="agent-name">Orchestrator</div><div class="agent-role">Coordena agentes e consolida respostas</div></div>
+<div class="agent-card"><div class="agent-icon" style="background:rgba(239,68,68,0.08)"><svg width="22" height="22" fill="none" stroke="var(--red-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div><div class="agent-name">Guardian</div><div class="agent-role">Controla alucinações, valida citações</div></div>
+<div class="agent-card"><div class="agent-icon" style="background:rgba(16,185,129,0.08)"><svg width="22" height="22" fill="none" stroke="var(--green-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg></div><div class="agent-name">Instrumento</div><div class="agent-role">Identifica instrumento e vedações</div></div>
+<div class="agent-card"><div class="agent-icon" style="background:rgba(192,132,252,0.08)"><svg width="22" height="22" fill="none" stroke="var(--purple-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg></div><div class="agent-name">Jurídico</div><div class="agent-role">Interpreta legislação e fundamenta</div></div>
+<div class="agent-card"><div class="agent-icon" style="background:rgba(37,99,235,0.08)"><svg width="22" height="22" fill="none" stroke="var(--blue-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21"/></svg></div><div class="agent-name">Constitucional</div><div class="agent-role">FPE, FPM, FUNDEB e repartição</div></div>
+<div class="agent-card"><div class="agent-icon" style="background:rgba(16,185,129,0.08)"><svg width="22" height="22" fill="none" stroke="var(--green-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg></div><div class="agent-name">Legal</div><div class="agent-role">SUS, SUAS, FNDE (transf. legais)</div></div>
+<div class="agent-card"><div class="agent-icon" style="background:rgba(251,146,60,0.08)"><svg width="22" height="22" fill="none" stroke="var(--orange-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div class="agent-name">Emendas</div><div class="agent-role">PIX, individual, bancada, comissão</div></div>
+<div class="agent-card"><div class="agent-icon" style="background:rgba(37,99,235,0.08)"><svg width="22" height="22" fill="none" stroke="var(--blue-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div><div class="agent-name">Celebração</div><div class="agent-role">Requisitos de celebração por modalidade</div></div>
+<div class="agent-card"><div class="agent-icon" style="background:rgba(16,185,129,0.08)"><svg width="22" height="22" fill="none" stroke="var(--green-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div><div class="agent-name">Execução</div><div class="agent-role">Monitora execução física-financeira</div></div>
+<div class="agent-card"><div class="agent-icon" style="background:rgba(37,99,235,0.08)"><svg width="22" height="22" fill="none" stroke="var(--blue-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div><div class="agent-name">Prestação</div><div class="agent-role">Analisa prestações de contas</div></div>
+<div class="agent-card"><div class="agent-icon" style="background:rgba(239,68,68,0.08)"><svg width="22" height="22" fill="none" stroke="var(--red-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01M5.07 19H19a2 2 0 001.75-2.97L13.75 4a2 2 0 00-3.5 0L3.32 16.03A2 2 0 005.07 19z"/></svg></div><div class="agent-name">TCE</div><div class="agent-role">Análise de instauração de TCE</div></div>
+<div class="agent-card"><div class="agent-icon" style="background:rgba(251,146,60,0.08)"><svg width="22" height="22" fill="none" stroke="var(--orange-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg></div><div class="agent-name">Risco</div><div class="agent-role">Classifica riscos em cada fase</div></div>
+<div class="agent-card"><div class="agent-icon" style="background:rgba(16,185,129,0.08)"><svg width="22" height="22" fill="none" stroke="var(--green-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 9v1m0-1c-1.11 0-2.08-.402-2.599-1"/></svg></div><div class="agent-name">Orçamentário</div><div class="agent-role">Classificações, fontes, RP e execução</div></div>
+<div class="agent-card"><div class="agent-icon" style="background:rgba(192,132,252,0.08)"><svg width="22" height="22" fill="none" stroke="var(--purple-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div class="agent-name">Auditor</div><div class="agent-role">Segunda opinião e revisão</div></div>
+<div class="agent-card"><div class="agent-icon" style="background:rgba(37,99,235,0.08)"><svg width="22" height="22" fill="none" stroke="var(--blue-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></div><div class="agent-name">Documentos</div><div class="agent-role">Gera pareceres, relatórios e minutas</div></div>
+</div></div>
+</div>
+</section>
+
+<section class="slide s4">
+<div class="slide-content">
+<div class="section-label" style="color:var(--blue-300)">O que o Sistema Entrega</div>
+<h2 class="section-title">Cada análise gera um dossiê completo</h2>
+<div class="grid-3">
+<div class="card card-blue"><div class="icon-box" style="background:rgba(37,99,235,0.08)"><svg width="26" height="26" fill="none" stroke="var(--blue-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div><h3>Parecer Jurídico</h3><p>Com citação de todas as normas aplicáveis. Estrutura formal: Ementa, Relatório, Fundamentação, Conclusão.</p></div>
+<div class="card card-blue"><div class="icon-box" style="background:rgba(37,99,235,0.08)"><svg width="26" height="26" fill="none" stroke="var(--blue-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1"/></svg></div><h3>Análise Financeira</h3><p>Empenhos, pagamentos, saldos, contrapartida. Cruzamento entre plano de trabalho e execução realizada.</p></div>
+<div class="card card-blue"><div class="icon-box" style="background:rgba(239,68,68,0.08)"><svg width="26" height="26" fill="none" stroke="var(--red-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01M5.07 19H19a2 2 0 001.75-2.97L13.75 4a2 2 0 00-3.5 0L3.32 16.03A2 2 0 005.07 19z"/></svg></div><h3>Mapa de Riscos</h3><p>Classificação clara: baixo, médio, alto, crítico. Recomendações priorizadas por urgência.</p></div>
+<div class="card card-blue"><div class="icon-box" style="background:rgba(16,185,129,0.08)"><svg width="26" height="26" fill="none" stroke="var(--green-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg></div><h3>Checklist Legal</h3><p>O que está conforme e o que precisa de ação. 493 regras verificadas automaticamente.</p></div>
+<div class="card card-blue"><div class="icon-box" style="background:rgba(251,146,60,0.08)"><svg width="26" height="26" fill="none" stroke="var(--orange-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><h3>Alertas de Prazo</h3><p>Prazos vencendo e ações urgentes. Monitoramento de CAUC, CADIN e CEPIM.</p></div>
+<div class="card card-blue"><div class="icon-box" style="background:rgba(37,99,235,0.08)"><svg width="26" height="26" fill="none" stroke="var(--blue-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div><h3>Relatório PDF</h3><p>Documento profissional pronto para assinatura. TR e Plano de Trabalho automáticos.</p></div>
+</div>
+<p style="text-align:center;color:var(--slate-300);font-size:1rem;margin-top:24px;font-weight:600">Tudo fundamentado na legislação vigente. O sistema não inventa, só analisa com base na lei.</p>
+</div>
+</section>
+
+<section class="slide s1" id="seguranca">
+<div class="slide-content">
+<div class="section-label" style="color:var(--green-400)">Segurança e Conformidade</div>
+<h2 class="section-title">Confiável para o governo</h2>
+<div class="grid-3">
+<div class="sec-card"><div class="icon-box" style="background:rgba(16,185,129,0.08)"><svg width="26" height="26" fill="none" stroke="var(--green-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div><h3>Guardian Anti-Alucinação</h3><p>Camada de verificação valida todas as respostas contra a base legal. Se não tem fonte, não entra no parecer.</p></div>
+<div class="sec-card"><div class="icon-box" style="background:rgba(16,185,129,0.08)"><svg width="26" height="26" fill="none" stroke="var(--green-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div><h3>Autenticação e RBAC</h3><p>Autenticação com rotação automática, perfis de permissão e limites de acesso por usuário. Acesso controlado.</p></div>
+<div class="sec-card"><div class="icon-box" style="background:rgba(16,185,129,0.08)"><svg width="26" height="26" fill="none" stroke="var(--green-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg></div><h3>Rastreabilidade Total</h3><p>Cada citação aponta para a legislação exata. Audit log completo. Tudo verificável e auditável.</p></div>
+<div class="sec-card"><div class="icon-box" style="background:rgba(16,185,129,0.08)"><svg width="26" height="26" fill="none" stroke="var(--green-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div><h3>HTTPS e Criptografia</h3><p>Certificado SSL automático. Dados em trânsito sempre criptografados. Servidor próprio.</p></div>
+<div class="sec-card"><div class="icon-box" style="background:rgba(16,185,129,0.08)"><svg width="26" height="26" fill="none" stroke="var(--green-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg></div><h3>Dados Isolados</h3><p>Banco de dados com permissões restritas. Cada cliente com dados isolados. Sem compartilhamento.</p></div>
+<div class="sec-card"><div class="icon-box" style="background:rgba(16,185,129,0.08)"><svg width="26" height="26" fill="none" stroke="var(--green-400)" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div><h3>Monitoramento 24/7</h3><p>Monitoramento contínuo com alertas automáticos. Disponibilidade projetada de 99.9%.</p></div>
+</div>
+</div>
+</section>
+
+<section class="slide s2">
+<div class="slide-content">
+<div class="section-label" style="color:var(--orange-400)">Pesquisa de Mercado</div>
+<h2 class="section-title">Resultado de pesquisa entre soluções disponíveis</h2>
+<p style="color:var(--slate-400);font-size:1rem;margin-bottom:32px;line-height:1.7">Realizamos uma pesquisa entre as soluções disponíveis no mercado para entender como cada categoria atende às necessidades da gestão de transferências da União.</p>
+<table class="compare-table">
+<thead><tr><th>Capacidade</th><th>Sistemas de Monitoramento</th><th>Assistentes de IA Genérica</th><th>SIATUP</th></tr></thead>
+<tbody>
+<tr><td>Análise de transferências</td><td class="td-red">Não analisa conteúdo</td><td class="td-red">Análise superficial</td><td class="td-green">Análise profunda por modalidade</td></tr>
+<tr><td>Base legal própria</td><td class="td-red">Não possui</td><td class="td-red">Conhecimento genérico</td><td class="td-green">618 legislações indexadas</td></tr>
+<tr><td>Jurisprudência TCU</td><td class="td-red">Não possui</td><td class="td-red">Pode fabricar acórdãos</td><td class="td-green">10.350 teses verificadas</td></tr>
+<tr><td>Verificação anti-fabricação</td><td style="color:var(--slate-500)">N/A</td><td class="td-red">Não possui</td><td class="td-green">Guardian verifica cada resposta</td></tr>
+<tr><td>Regras por modalidade</td><td class="td-red">Alertas simples</td><td class="td-red">Nenhuma regra</td><td class="td-green">493 regras determinísticas</td></tr>
+<tr><td>Geração de parecer</td><td class="td-red">Não gera</td><td class="td-red">Texto sem estrutura formal</td><td class="td-green">PDF com fundamentação legal</td></tr>
+<tr><td>Rastreabilidade de fontes</td><td style="color:var(--slate-500)">Links para portais</td><td class="td-red">Nenhuma</td><td class="td-green">Cada citação com fonte exata</td></tr>
+</tbody>
+</table>
+<p style="color:var(--slate-600);font-size:0.8rem;margin-top:20px;font-style:italic;line-height:1.6">Pesquisa realizada com base em análise funcional de soluções disponíveis no mercado brasileiro. Cada sistema tem seu mérito na sua área de atuação. O SIATUP foi projetado especificamente para o nicho de transferências e parcerias da União.</p>
+</div>
+</section>
+
+<section class="slide s3 cta" id="contato">
+<div class="slide-content">
+<div class="section-label" style="color:var(--green-400)">Próximo Passo</div>
+<h2>Pronto para transformar a<br>gestão de transferências?</h2>
+<p>Agende uma demonstração e veja o SIATUP analisando seus documentos em tempo real.</p>
+<a href="mailto:lucigabidias@gmail.com" class="cta-btn">Agendar Demonstração</a>
+<div style="margin-top:48px">
+<div style="font-size:0.75rem;color:var(--slate-500);text-transform:uppercase;letter-spacing:1.5px">Arquiteta e Fundadora</div>
+<div style="font-size:1.2rem;font-weight:700;margin-top:6px;color:var(--slate-200)">Luciana Gabriella da Silva</div>
+<div style="font-size:0.95rem;color:var(--slate-400);margin-top:6px">Especialista em Processos e Sistemas</div>
+<div style="margin-top:16px;font-size:0.9rem;color:var(--slate-500)">WhatsApp: (61) 98462-0329 | Email: lucigabidias@gmail.com</div>
+</div>
+</div>
+</section>
+
+<section class="slide s4" id="sobre">
+<div class="slide-content" style="text-align:center">
+<div class="section-label" style="color:var(--blue-300)">Quem Está Por Trás</div>
+<h2 class="section-title" style="text-align:center">Luciana Gabriella da Silva</h2>
+<div class="grid-2" style="max-width:900px;margin:0 auto;align-items:center">
+<div style="text-align:left">
+<p style="font-size:1rem;color:var(--slate-300);line-height:1.8;margin-bottom:16px">Especialista em processos e sistemas com <b style="color:var(--blue-300)">mais de 7 anos</b> de experiência na administração pública federal.</p>
+<p style="font-size:0.95rem;color:var(--slate-400);line-height:1.8;margin-bottom:16px">Atuação em órgãos como <b style="color:var(--slate-300)">MDA</b> (Chefe de Divisão), <b style="color:var(--slate-300)">MAPA</b> e <b style="color:var(--slate-300)">INCRA</b>. Domínio completo de SIAFI, TransfereGov, SEI, SIGAC e sistemas de gestão federal.</p>
+<p style="font-size:0.95rem;color:var(--slate-400);line-height:1.8;margin-bottom:16px">Formação em <b style="color:var(--slate-300)">Gestão de Recursos Humanos</b> (IESB), com pós-graduações em <b style="color:var(--slate-300)">Gestão Pública</b>, <b style="color:var(--slate-300)">Inteligência Artificial</b> e MBA em <b style="color:var(--slate-300)">Assessoria Parlamentar em Orçamento Público</b>.</p>
+<p style="font-size:0.95rem;color:var(--slate-400);line-height:1.8;margin-bottom:16px">Arquiteta e desenvolvedora do SIATUP — unindo conhecimento profundo da máquina pública com tecnologia de ponta para resolver problemas reais da gestão de transferências.</p>
+<div style="margin-top:20px;display:flex;gap:24px;flex-wrap:wrap">
+<div style="background:rgba(37,99,235,0.08);border:1px solid rgba(37,99,235,0.15);border-radius:10px;padding:10px 18px"><span style="font-size:0.8rem;color:var(--blue-300);font-weight:600">7+ anos Gov. Federal</span></div>
+<div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.15);border-radius:10px;padding:10px 18px"><span style="font-size:0.8rem;color:var(--green-400);font-weight:600">SIAFI 2022 TransfereGov 2022 SEI</span></div>
+<div style="background:rgba(192,132,252,0.08);border:1px solid rgba(192,132,252,0.15);border-radius:10px;padding:10px 18px"><span style="font-size:0.8rem;color:var(--purple-400);font-weight:600">IA 2022 Programação 2022 Design</span></div>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:20px">
+<div style="background:white;border-radius:16px;padding:16px;display:inline-block"><img src="data:image/png;base64,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" width="200" height="200" alt="QR Code Currículo"></div>
+<p style="font-size:0.9rem;color:var(--blue-300);font-weight:600">Escaneie para ver meu currículo</p>
+<div style="margin-top:8px">
+<p style="font-size:0.85rem;color:var(--slate-500)">WhatsApp: (61) 98462-0329</p>
+<p style="font-size:0.85rem;color:var(--slate-500)">Email: lucigabidias@gmail.com</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<div class="confid">Documento Confidencial — Uso Exclusivo</div>
+</body>
+</html>
