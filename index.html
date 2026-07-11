@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.add('js');</script>
 <title>Luciana Gabriella da Silva | Arquiteta de Sistemas para Gestão Pública</title>
 <meta name="description" content="Especialista em processos e sistemas para a administração pública federal. Criadora do SIATUP e do PIL. Inteligência artificial aplicada a transferências da União e ao Legislativo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -283,6 +284,178 @@ footer{
   body{background:#fff;color:#111}
   .btn,form{display:none}
 }
+
+/* ============================================================
+   VISUAL POLISH LAYER — glows, depth, microinteractions, motion
+   All effects derive from the existing palette only.
+   ============================================================ */
+
+/* --- Hero: 2-column layout + illustration --- */
+.hero{position:relative;overflow:hidden}
+.hero{
+  background:
+    radial-gradient(1100px 520px at 88% -12%,rgba(37,99,235,.26),transparent 62%),
+    radial-gradient(760px 420px at -5% 115%,rgba(16,185,129,.16),transparent 60%),
+    radial-gradient(600px 600px at 50% 40%,rgba(59,130,246,.05),transparent 70%),
+    linear-gradient(180deg,var(--bg) 0%,#0a0f1c 100%);
+}
+/* faint dotted-grid depth overlay + top vignette */
+.hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(rgba(59,130,246,.10) 1px,transparent 1px);
+  background-size:26px 26px;
+  -webkit-mask-image:radial-gradient(circle at 70% 30%,#000,transparent 70%);
+  mask-image:radial-gradient(circle at 70% 30%,#000,transparent 70%);
+  opacity:.5;
+}
+.hero .wrap{position:relative;z-index:1}
+.hero-grid{display:flex;flex-direction:column;gap:36px}
+.hero-copy{min-width:0}
+.hero-art{display:flex;justify-content:center}
+.hero-art img{
+  width:100%;max-width:400px;height:auto;
+  filter:drop-shadow(0 24px 60px rgba(37,99,235,.30));
+}
+@media (min-width:900px){
+  .hero-grid{flex-direction:row;align-items:center;gap:40px}
+  .hero-copy{flex:1 1 55%}
+  .hero-art{flex:1 1 42%}
+  .hero-art img{max-width:440px}
+}
+
+/* --- Eyebrow accent line --- */
+.eyebrow::before{
+  content:"";display:inline-block;width:22px;height:2px;margin-right:10px;
+  vertical-align:middle;border-radius:2px;background:var(--green);
+  box-shadow:0 0 8px rgba(16,185,129,.55);
+}
+
+/* --- Buttons: layered glow --- */
+.btn{transition:transform .25s cubic-bezier(.25,.46,.45,.94),box-shadow .3s ease,opacity .2s ease,border-color .3s ease}
+.btn-primary{box-shadow:0 4px 14px rgba(37,99,235,.30)}
+.btn-primary:hover{opacity:1;box-shadow:0 10px 26px rgba(37,99,235,.48),0 0 0 1px rgba(59,130,246,.35)}
+.btn-ghost:hover{opacity:1;border-color:rgba(59,130,246,.55);box-shadow:0 0 18px rgba(37,99,235,.22)}
+
+/* --- Cards: hover-lift + layered glow --- */
+.card{
+  position:relative;
+  transition:transform .5s cubic-bezier(.25,.46,.45,.94),
+             box-shadow .5s cubic-bezier(.25,.46,.45,.94),
+             border-color .5s cubic-bezier(.25,.46,.45,.94);
+}
+.card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(59,130,246,.5);
+  box-shadow:0 20px 44px -14px rgba(37,99,235,.38),0 0 0 1px rgba(37,99,235,.14);
+}
+.card.destaque{overflow:hidden}
+.card.destaque:hover{
+  border-color:rgba(37,99,235,.85);
+  box-shadow:0 26px 58px -14px rgba(37,99,235,.5),0 0 0 1px rgba(59,130,246,.25);
+}
+/* subtle animated sheen on the highlighted card */
+.card.destaque::after{
+  content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(59,130,246,.14),transparent);
+  transform:skewX(-18deg);pointer-events:none;z-index:0;
+  animation:sheen 7s ease-in-out infinite;
+}
+.card.destaque>*{position:relative;z-index:1}
+@keyframes sheen{0%,55%{left:-70%}100%{left:135%}}
+
+/* --- Feature icons: hover microinteraction --- */
+.feat{
+  transition:transform .5s cubic-bezier(.25,.46,.45,.94),
+             box-shadow .5s cubic-bezier(.25,.46,.45,.94),
+             border-color .5s cubic-bezier(.25,.46,.45,.94);
+}
+.feat svg{transition:transform .4s cubic-bezier(.34,1.56,.64,1),filter .4s ease}
+.feat:hover{
+  transform:translateY(-4px);
+  border-color:rgba(16,185,129,.42);
+  box-shadow:0 16px 34px -14px rgba(16,185,129,.30);
+}
+.feat:hover svg{transform:scale(1.16);filter:drop-shadow(0 0 8px rgba(16,185,129,.6))}
+
+/* --- Number cards: hover glow --- */
+.num{
+  transition:transform .45s cubic-bezier(.25,.46,.45,.94),
+             box-shadow .45s ease,border-color .45s ease;
+}
+.num .v{font-variant-numeric:tabular-nums}
+.num:hover{
+  transform:translateY(-4px);
+  border-color:rgba(59,130,246,.45);
+  box-shadow:0 16px 34px -14px rgba(37,99,235,.32);
+}
+
+/* --- Tags: hover --- */
+.tag{transition:transform .3s ease,color .3s ease,border-color .3s ease,box-shadow .3s ease}
+.tag:hover{
+  transform:translateY(-2px);color:var(--text);
+  border-color:rgba(16,185,129,.5);box-shadow:0 0 14px rgba(16,185,129,.16);
+}
+
+/* --- Inputs: focus glow --- */
+input,textarea{transition:border-color .25s ease,box-shadow .25s ease}
+input:focus,textarea:focus{
+  outline:none;border-color:var(--blue-soft);
+  box-shadow:0 0 0 3px rgba(37,99,235,.28);
+}
+
+/* --- Animated underline for inline text links --- */
+p a:not(.btn){
+  text-decoration:none;
+  background-image:linear-gradient(currentColor,currentColor);
+  background-size:0% 1px;background-repeat:no-repeat;background-position:0 100%;
+  transition:background-size .35s cubic-bezier(.25,.46,.45,.94);
+}
+p a:not(.btn):hover{background-size:100% 1px}
+
+/* --- Decorative section accents (subtle depth blobs) --- */
+.projetos{position:relative;overflow:hidden}
+.projetos::before{
+  content:"";position:absolute;top:-120px;right:-120px;width:420px;height:420px;
+  pointer-events:none;z-index:0;
+  background:radial-gradient(circle,rgba(37,99,235,.12),transparent 65%);
+}
+.projetos .wrap{position:relative;z-index:1}
+.numeros{position:relative;overflow:hidden}
+.numeros::before{
+  content:"";position:absolute;bottom:-140px;left:-100px;width:380px;height:380px;
+  pointer-events:none;z-index:0;
+  background:radial-gradient(circle,rgba(16,185,129,.10),transparent 65%);
+}
+.numeros .wrap{position:relative;z-index:1}
+
+/* --- Scroll-reveal (progressive enhancement; no-JS shows everything) --- */
+.js .reveal{
+  opacity:0;transform:translateY(24px);
+  transition:opacity .7s cubic-bezier(.25,.46,.45,.94),
+             transform .7s cubic-bezier(.25,.46,.45,.94);
+}
+.js .reveal.in{opacity:1;transform:none}
+
+/* --- Hero entrance on load --- */
+.js .hero-copy>*{opacity:0;animation:heroIn .8s cubic-bezier(.25,.46,.45,.94) both}
+.js .hero-copy>h1{animation-delay:.08s}
+.js .hero-copy>.role{animation-delay:.20s}
+.js .hero-copy>.lead{animation-delay:.32s}
+.js .hero-copy>.cta{animation-delay:.44s}
+.js .hero-art{opacity:0;animation:heroIn 1s cubic-bezier(.25,.46,.45,.94) .5s both}
+@keyframes heroIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+
+/* --- Accessibility: honor reduced-motion --- */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .js .reveal{opacity:1;transform:none;transition:none}
+  .js .hero-copy>*,.js .hero-art{opacity:1;animation:none}
+  .card.destaque::after{animation:none;display:none}
+  *,*::before,*::after{
+    animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important;scroll-behavior:auto!important;
+  }
+}
 </style>
 </head>
 <body>
@@ -290,12 +463,19 @@ footer{
 <!-- HERO -->
 <header class="hero">
   <div class="wrap">
-    <h1>Luciana Gabriella da Silva<br><span>Arquiteta de Sistemas para Gestão Pública</span></h1>
-    <p class="role">Inteligência artificial aplicada a transferências da União e ao Legislativo</p>
-    <p class="lead">Mais de 7 anos na administração pública federal, unindo conhecimento real de quem opera os sistemas do governo com a construção de ferramentas de IA que analisam, fundamentam e entregam com fontes oficiais e política de zero alucinação.</p>
-    <div class="cta">
-      <a class="btn btn-primary" href="#contato">Entrar em contato</a>
-      <a class="btn btn-ghost" href="#projetos">Ver projetos</a>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1>Luciana Gabriella da Silva<br><span>Arquiteta de Sistemas para Gestão Pública</span></h1>
+        <p class="role">Inteligência artificial aplicada a transferências da União e ao Legislativo</p>
+        <p class="lead">Mais de 7 anos na administração pública federal, unindo conhecimento real de quem opera os sistemas do governo com a construção de ferramentas de IA que analisam, fundamentam e entregam com fontes oficiais e política de zero alucinação.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#contato">Entrar em contato</a>
+          <a class="btn btn-ghost" href="#projetos">Ver projetos</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <img src="assets/hero-illustration.svg" alt="" width="480" height="480" loading="eager" decoding="async">
+      </div>
     </div>
   </div>
 </header>
@@ -303,13 +483,13 @@ footer{
 <!-- SOBRE -->
 <section id="sobre">
   <div class="wrap">
-    <span class="eyebrow">Quem sou</span>
-    <h2>Experiência de dentro do governo, tecnologia de ponta</h2>
+    <span class="eyebrow reveal">Quem sou</span>
+    <h2 class="reveal">Experiência de dentro do governo, tecnologia de ponta</h2>
     <div class="sobre-grid">
-      <div>
+      <div class="reveal">
         <p>Sou especialista em processos e sistemas com 7 anos de experiência na gestão pública federal, com passagens pelo MDA, MAPA e INCRA, incluindo chefia de divisão de prestação de contas. Trabalho diariamente com SIAFI, TransfereGov, SEI e SIGAC, e conheço na prática o ciclo completo das transferências da União: da celebração à prestação de contas.</p>
         <p>Foi durante esse período que adquiri o conhecimento que sustenta tudo o que construo hoje. O SIATUP nasceu da minha própria dor na análise de prestação de contas: horas de pesquisa legislativa, pareceres devolvidos, prazos apertados. Em vez de aceitar essa rotina, transformei a dor em sistema. Concilio o trabalho no governo federal com a maternidade e com múltiplos projetos de tecnologia, no Brasil e fora dele, priorizando sempre precisão sobre velocidade.</p>
-        <p>Em formação contínua: estou concluindo a pós-graduação em Gestão Pública e a pós-graduação em Inteligência Artificial, e curso o MBA em Assessoria Parlamentar e Orçamento Público, coordenado pelo Prof. Dalmo Palmeira.</p>
+        <p>Em formação contínua: estou concluindo a pós-graduação em Gestão Pública e a pós-graduação em Inteligência Artificial, e curso o MBA em Assessoria Parlamentar em Orçamento Público, coordenado pelo Me. Dalmo Palmeira.</p>
         <div class="tags">
           <span class="tag">SIAFI</span>
           <span class="tag">TransfereGov</span>
@@ -321,7 +501,7 @@ footer{
           <span class="tag">Dados Abertos</span>
         </div>
       </div>
-      <div class="qr-box">
+      <div class="qr-box reveal">
         <img src="https://api.qrserver.com/v1/create-qr-code/?size=360x360&data=https%3A%2F%2Fpublic-inky-six-32.vercel.app%2F" alt="QR Code para o currículo completo de Luciana Gabriella">
         <p class="qr-label">Aponte a câmera para acessar o currículo completo, ou <a href="https://public-inky-six-32.vercel.app/" target="_blank" rel="noopener">clique aqui</a>.</p>
       </div>
@@ -332,31 +512,31 @@ footer{
 <!-- ÁREAS DE ATUAÇÃO -->
 <section id="areas">
   <div class="wrap">
-    <span class="eyebrow">Áreas de atuação</span>
-    <h2>Onde eu entrego valor</h2>
+    <span class="eyebrow reveal">Áreas de atuação</span>
+    <h2 class="reveal">Onde eu entrego valor</h2>
     <div class="feat-grid">
-      <div class="feat">
+      <div class="feat reveal">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.5V11h3a4 4 0 0 1 4 4v1h-2v-1a2 2 0 0 0-2-2h-3v2.5c1.2.7 2 2 2 3.5a4 4 0 0 1-8 0c0-1.5.8-2.8 2-3.5V13H7a2 2 0 0 0-2 2v1H3v-1a4 4 0 0 1 4-4h3V9.5c-1.2-.7-2-2-2-3.5a4 4 0 0 1 4-4z"/></svg>
         <div>
           <h3>IA aplicada à gestão pública</h3>
           <p>Construção de sistemas de inteligência artificial ancorados em fontes oficiais, com política de zero alucinação, para análise, parecer e apoio à decisão.</p>
         </div>
       </div>
-      <div class="feat">
+      <div class="feat reveal">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/></svg>
         <div>
           <h3>Transferências da União</h3>
           <p>Análise e prestação de contas de convênios, TEDs, contratos de repasse, termos de fomento e transferências especiais (emendas PIX), da celebração ao encerramento.</p>
         </div>
       </div>
-      <div class="feat">
+      <div class="feat reveal">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
         <div>
           <h3>Sistemas e processos</h3>
           <p>Arquitetura de sistemas e desenho de processos para o setor público e para empresas, transformando rotinas manuais em fluxos estruturados e auditáveis.</p>
         </div>
       </div>
-      <div class="feat">
+      <div class="feat reveal">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
         <div>
           <h3>Treinamentos e capacitação</h3>
@@ -370,11 +550,11 @@ footer{
 <!-- PROJETOS -->
 <section id="projetos" class="projetos">
   <div class="wrap">
-    <span class="eyebrow">Projetos</span>
-    <h2>O que estou construindo</h2>
+    <span class="eyebrow reveal">Projetos</span>
+    <h2 class="reveal">O que estou construindo</h2>
     <div class="cards">
 
-      <article class="card destaque">
+      <article class="card destaque reveal">
         <div class="badges">
           <span class="badge badge-blue">Em produção</span>
           <span class="badge badge-green">Em teste por servidores e consultores</span>
@@ -385,7 +565,7 @@ footer{
         <p><a class="btn btn-primary" href="projetos/siatup/">Ver a apresentação</a></p>
       </article>
 
-      <article class="card">
+      <article class="card reveal">
         <div class="badges">
           <span class="badge badge-blue">Em desenvolvimento</span>
           <span class="badge badge-green">Em teste</span>
@@ -394,7 +574,7 @@ footer{
         <p>Painel Inteligente Legislativo. Nasceu de uma dor real: Nélio, servidor do Senado Federal com mais de 20 anos de experiência, me procurou buscando uma solução para o acompanhamento legislativo do dia a dia, e hoje é ele quem testa o sistema. Dados oficiais do Senado e da Câmara em tempo real, mapa de tramitação, alertas de prazo e inteligência artificial ancorada em textos legais oficiais para pareceres e análises em minutos.</p>
       </article>
 
-      <article class="card">
+      <article class="card reveal">
         <div class="badges">
           <span class="badge badge-gold">Parceria EUA</span>
         </div>
@@ -406,7 +586,7 @@ footer{
         <p><a class="btn btn-ghost" href="https://usasalus.com" target="_blank" rel="noopener">Conhecer a Salus Water</a></p>
       </article>
 
-      <article class="card">
+      <article class="card reveal">
         <div class="badges">
           <span class="badge badge-gold">Parceria</span>
         </div>
@@ -415,7 +595,7 @@ footer{
         <p><a class="btn btn-ghost" href="https://www.ativatecbr.com" target="_blank" rel="noopener">Conhecer a Ativatec</a> <a class="btn btn-ghost" href="https://youtu.be/3OHFbAGRLMU" target="_blank" rel="noopener">Ver a Plei em vídeo</a></p>
       </article>
 
-      <article class="card">
+      <article class="card reveal">
         <div class="badges">
           <span class="badge badge-gold">Parceria</span>
         </div>
@@ -424,7 +604,7 @@ footer{
         <p><a class="btn btn-ghost" href="https://baplanding-4wdv8y7a.manus.space" target="_blank" rel="noopener">Conhecer o BAP</a></p>
       </article>
 
-      <article class="card">
+      <article class="card reveal">
         <div class="badges">
           <span class="badge badge-green">Disponível</span>
         </div>
@@ -439,13 +619,13 @@ footer{
 <!-- NÚMEROS -->
 <section id="numeros" class="numeros">
   <div class="wrap">
-    <span class="eyebrow">SIATUP em números</span>
-    <h2>Escala com fundamentação</h2>
+    <span class="eyebrow reveal">SIATUP em números</span>
+    <h2 class="reveal">Escala com fundamentação</h2>
     <div class="num-grid">
-      <div class="num"><div class="v">28</div><div class="l">agentes de IA especializados</div></div>
-      <div class="num"><div class="v">493</div><div class="l">regras determinísticas</div></div>
-      <div class="num"><div class="v">618+</div><div class="l">legislações na base</div></div>
-      <div class="num"><div class="v">10</div><div class="l">modalidades cobertas</div></div>
+      <div class="num reveal"><div class="v">28</div><div class="l">agentes de IA especializados</div></div>
+      <div class="num reveal"><div class="v">493</div><div class="l">regras determinísticas</div></div>
+      <div class="num reveal"><div class="v">618+</div><div class="l">legislações na base</div></div>
+      <div class="num reveal"><div class="v">10</div><div class="l">modalidades cobertas</div></div>
     </div>
   </div>
 </section>
@@ -453,31 +633,31 @@ footer{
 <!-- FEATURES -->
 <section id="features">
   <div class="wrap">
-    <span class="eyebrow">Como o SIATUP entrega</span>
-    <h2>Quatro frentes de análise</h2>
+    <span class="eyebrow reveal">Como o SIATUP entrega</span>
+    <h2 class="reveal">Quatro frentes de análise</h2>
     <div class="feat-grid">
-      <div class="feat">
+      <div class="feat reveal">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
         <div>
           <h3>Análise por Instrumento</h3>
           <p>Cada modalidade de transferência tem regras próprias. O sistema aplica o conjunto correto de verificações para convênios, TEDs, fomento, emendas e demais instrumentos.</p>
         </div>
       </div>
-      <div class="feat">
+      <div class="feat reveal">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
         <div>
           <h3>Parecer Fundamentado</h3>
           <p>O resultado não é uma resposta solta: é um parecer com fundamentação legal rastreável, pronto para o servidor revisar, ajustar e assinar.</p>
         </div>
       </div>
-      <div class="feat">
+      <div class="feat reveal">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         <div>
           <h3>Dados Abertos Oficiais</h3>
           <p>A base é alimentada apenas por fontes oficiais de domínios gov.br, jus.br e leg.br, com verificação de vigência e integridade antes de qualquer indexação.</p>
         </div>
       </div>
-      <div class="feat">
+      <div class="feat reveal">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
         <div>
           <h3>Alertas e Prazos</h3>
@@ -491,13 +671,13 @@ footer{
 <!-- CAIXAS -->
 <section id="metodo">
   <div class="wrap">
-    <span class="eyebrow">Método</span>
-    <h2>Transparência antes de tudo</h2>
-    <div class="caixa">
+    <span class="eyebrow reveal">Método</span>
+    <h2 class="reveal">Transparência antes de tudo</h2>
+    <div class="caixa reveal">
       <h3>Como a base de conhecimento funciona (SIATUP e PIL)</h3>
       <p>A base de conhecimento está sempre em atualização. O que ela tem, entrega atualizado e com fonte. O que ela não tem, o sistema informa honestamente que não possui a informação e pede permissão para pesquisar nas fontes oficiais antes de responder. É essa disciplina que sustenta a política de zero alucinação: preferimos um gap conhecido a uma resposta inventada.</p>
     </div>
-    <div class="caixa verde">
+    <div class="caixa verde reveal">
       <h3>Desenvolvimento consciente</h3>
       <p>Um sistema robusto exige recursos. Por isso, desenvolvo o beta de cada instrumento separadamente, o que reduz o custo por análise e permite evoluir com consistência. O desenvolvimento é contínuo e conciliado com o trabalho no governo federal, a maternidade e outros projetos. A prioridade é sempre a mesma: precisão acima de velocidade.</p>
     </div>
@@ -507,10 +687,10 @@ footer{
 <!-- PUBLICAÇÕES E EVENTOS -->
 <section id="eventos" class="projetos">
   <div class="wrap">
-    <span class="eyebrow">Publicações e eventos</span>
-    <h2>Por onde o trabalho circula</h2>
+    <span class="eyebrow reveal">Publicações e eventos</span>
+    <h2 class="reveal">Por onde o trabalho circula</h2>
     <div class="cards">
-      <article class="card" style="grid-column:1 / -1">
+      <article class="card reveal" style="grid-column:1 / -1">
         <div class="badges">
           <span class="badge badge-gold">Evento</span>
           <span class="badge badge-blue">Julho de 2026</span>
@@ -526,15 +706,15 @@ footer{
 <!-- LINKS -->
 <section id="links">
   <div class="wrap">
-    <span class="eyebrow">Links e downloads</span>
-    <h2>Para saber mais</h2>
+    <span class="eyebrow reveal">Links e downloads</span>
+    <h2 class="reveal">Para saber mais</h2>
     <div class="cards">
-      <article class="card">
+      <article class="card reveal">
         <h3>Currículo completo</h3>
         <p>Trajetória detalhada na administração pública federal, formação e projetos.</p>
         <p><a class="btn btn-ghost" href="https://public-inky-six-32.vercel.app/" target="_blank" rel="noopener">Acessar currículo</a></p>
       </article>
-      <article class="card">
+      <article class="card reveal">
         <h3>Fale comigo</h3>
         <p>Demonstrações, treinamentos, parcerias e consultorias são tratadas pessoalmente, de acordo com a realidade de cada órgão ou empresa.</p>
         <p><a class="btn btn-primary" href="#contato">Ir para o contato</a></p>
@@ -546,10 +726,10 @@ footer{
 <!-- CONTATO -->
 <section id="contato" class="contato">
   <div class="wrap">
-    <span class="eyebrow">Contato</span>
-    <h2>Vamos conversar</h2>
+    <span class="eyebrow reveal">Contato</span>
+    <h2 class="reveal">Vamos conversar</h2>
     <div class="contato-grid">
-      <div class="contato-info">
+      <div class="contato-info reveal">
         <p>Quer conhecer o SIATUP ou o PIL, conversar sobre treinamentos ou explorar uma parceria? Me chame por aqui ou preencha o formulário ao lado. Demonstrações e condições são tratadas pessoalmente, de acordo com a realidade de cada órgão ou empresa.</p>
         <div class="canal">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -560,7 +740,7 @@ footer{
           lucigabidias@gmail.com
         </div>
       </div>
-      <form action="https://formspree.io/f/SEU_CODIGO_AQUI" method="POST">
+      <form class="reveal" action="https://formspree.io/f/SEU_CODIGO_AQUI" method="POST">
         <div>
           <label for="nome">Nome</label>
           <input type="text" id="nome" name="nome" required>
@@ -589,5 +769,79 @@ footer{
   </div>
 </footer>
 
+<script>
+/* Scroll-reveal with per-group stagger + animated counters (vanilla JS). */
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasIO = 'IntersectionObserver' in window;
+
+  /* ---------- Scroll reveal ---------- */
+  var reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  // Assign a progressive stagger delay based on position within the parent.
+  var counts = {};
+  reveals.forEach(function(el){
+    var p = el.parentElement;
+    var key = (p.id || p.className || 'root');
+    var idx = counts[key] = (counts[key] || 0) + 1;
+    el.style.transitionDelay = (Math.min(idx - 1, 6) * 90) + 'ms';
+  });
+
+  if (reduce || !hasIO) {
+    reveals.forEach(function(el){ el.style.transitionDelay = '0ms'; el.classList.add('in'); });
+  } else {
+    var ro = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){
+          var el = e.target;
+          el.classList.add('in');
+          // Drop the stagger delay after reveal so hover transitions stay snappy.
+          el.addEventListener('transitionend', function(){ el.style.transitionDelay = '0ms'; }, { once:true });
+          ro.unobserve(el);
+        }
+      });
+    }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+    reveals.forEach(function(el){ ro.observe(el); });
+  }
+
+  /* ---------- Animated counters (SIATUP em números) ---------- */
+  var section = document.getElementById('numeros');
+  if (section){
+    var items = Array.prototype.slice.call(section.querySelectorAll('.v')).map(function(el){
+      var txt = el.textContent.trim();
+      var m = txt.match(/^(\d+)(\D*)$/);   // preserves any suffix, e.g. "618+"
+      return { el:el, target: m ? parseInt(m[1],10) : 0, suffix: m ? m[2] : '' };
+    });
+
+    function run(item){
+      var dur = 1400, start = null;
+      function step(ts){
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+        item.el.textContent = Math.round(eased * item.target) + item.suffix;
+        if (p < 1) requestAnimationFrame(step);
+        else item.el.textContent = item.target + item.suffix;
+      }
+      requestAnimationFrame(step);
+    }
+
+    if (!reduce && hasIO){
+      var fired = false;
+      var co = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if (e.isIntersecting && !fired){
+            fired = true;
+            items.forEach(function(it){ it.el.textContent = '0' + it.suffix; run(it); });
+            co.disconnect();
+          }
+        });
+      }, { threshold:0.35 });
+      co.observe(section);
+    }
+    // reduced-motion / no-IO: final values already present in the DOM — left untouched.
+  }
+})();
+</script>
 </body>
 </html>
