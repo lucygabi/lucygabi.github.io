@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="ia-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6d28d9"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <filter id="ia-glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="ia-soft">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="200" height="200" fill="#0f0a2a" rx="20"/>
+  <rect x="1" y="1" width="198" height="198" fill="none" stroke="#6d28d9" stroke-width="0.5" rx="20" opacity="0.2"/>
+  <!-- Brain silhouette (clean, geometric) -->
+  <!-- Left hemisphere -->
+  <path d="M88,48 C66,48 52,66 52,84 C52,96 58,106 68,112 C68,124 74,134 88,138"
+        fill="none" stroke="#6d28d9" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Right hemisphere -->
+  <path d="M112,48 C134,48 148,66 148,84 C148,96 142,106 132,112 C132,124 126,134 112,138"
+        fill="none" stroke="#6d28d9" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Top bridge -->
+  <path d="M88,48 C88,38 112,38 112,48" fill="none" stroke="#6d28d9" stroke-width="1.8"/>
+  <!-- Bottom bridge -->
+  <path d="M88,138 C88,144 112,144 112,138" fill="none" stroke="#6d28d9" stroke-width="1.8"/>
+  <!-- Central fold line -->
+  <path d="M100,42 L100,142" fill="none" stroke="#6d28d9" stroke-width="0.6" opacity="0.2" stroke-dasharray="3 4"/>
+  <!-- Neural network: 3 layers -->
+  <!-- Layer 1 (input) -->
+  <circle cx="72" cy="72" r="4" fill="#10b981" opacity="0.15"/>
+  <circle cx="72" cy="72" r="4" fill="none" stroke="#10b981" stroke-width="1.2"/>
+  <circle cx="72" cy="72" r="1.5" fill="#10b981" filter="url(#ia-glow)"/>
+  <circle cx="72" cy="96" r="4" fill="#10b981" opacity="0.15"/>
+  <circle cx="72" cy="96" r="4" fill="none" stroke="#10b981" stroke-width="1.2"/>
+  <circle cx="72" cy="96" r="1.5" fill="#10b981" filter="url(#ia-glow)"/>
+  <circle cx="72" cy="120" r="4" fill="#10b981" opacity="0.15"/>
+  <circle cx="72" cy="120" r="4" fill="none" stroke="#10b981" stroke-width="1.2"/>
+  <circle cx="72" cy="120" r="1.5" fill="#10b981" filter="url(#ia-glow)"/>
+  <!-- Layer 2 (hidden) -->
+  <circle cx="100" cy="80" r="5" fill="#10b981" opacity="0.15"/>
+  <circle cx="100" cy="80" r="5" fill="none" stroke="#10b981" stroke-width="1.2"/>
+  <circle cx="100" cy="80" r="2" fill="#10b981" filter="url(#ia-glow)"/>
+  <circle cx="100" cy="108" r="5" fill="#10b981" opacity="0.15"/>
+  <circle cx="100" cy="108" r="5" fill="none" stroke="#10b981" stroke-width="1.2"/>
+  <circle cx="100" cy="108" r="2" fill="#10b981" filter="url(#ia-glow)"/>
+  <!-- Layer 3 (output) -->
+  <circle cx="128" cy="72" r="4" fill="#10b981" opacity="0.15"/>
+  <circle cx="128" cy="72" r="4" fill="none" stroke="#10b981" stroke-width="1.2"/>
+  <circle cx="128" cy="72" r="1.5" fill="#10b981" filter="url(#ia-glow)"/>
+  <circle cx="128" cy="96" r="4" fill="#10b981" opacity="0.15"/>
+  <circle cx="128" cy="96" r="4" fill="none" stroke="#10b981" stroke-width="1.2"/>
+  <circle cx="128" cy="96" r="1.5" fill="#10b981" filter="url(#ia-glow)"/>
+  <circle cx="128" cy="120" r="4" fill="#10b981" opacity="0.15"/>
+  <circle cx="128" cy="120" r="4" fill="none" stroke="#10b981" stroke-width="1.2"/>
+  <circle cx="128" cy="120" r="1.5" fill="#10b981" filter="url(#ia-glow)"/>
+  <!-- Connections L1->L2 -->
+  <line x1="76" y1="72" x2="95" y2="80" stroke="#10b981" stroke-width="0.7" opacity="0.4"/>
+  <line x1="76" y1="72" x2="95" y2="108" stroke="#10b981" stroke-width="0.7" opacity="0.2"/>
+  <line x1="76" y1="96" x2="95" y2="80" stroke="#10b981" stroke-width="0.7" opacity="0.3"/>
+  <line x1="76" y1="96" x2="95" y2="108" stroke="#10b981" stroke-width="0.7" opacity="0.4"/>
+  <line x1="76" y1="120" x2="95" y2="108" stroke="#10b981" stroke-width="0.7" opacity="0.4"/>
+  <line x1="76" y1="120" x2="95" y2="80" stroke="#10b981" stroke-width="0.7" opacity="0.2"/>
+  <!-- Connections L2->L3 -->
+  <line x1="105" y1="80" x2="124" y2="72" stroke="#10b981" stroke-width="0.7" opacity="0.4"/>
+  <line x1="105" y1="80" x2="124" y2="96" stroke="#10b981" stroke-width="0.7" opacity="0.3"/>
+  <line x1="105" y1="80" x2="124" y2="120" stroke="#10b981" stroke-width="0.7" opacity="0.2"/>
+  <line x1="105" y1="108" x2="124" y2="72" stroke="#10b981" stroke-width="0.7" opacity="0.2"/>
+  <line x1="105" y1="108" x2="124" y2="96" stroke="#10b981" stroke-width="0.7" opacity="0.3"/>
+  <line x1="105" y1="108" x2="124" y2="120" stroke="#10b981" stroke-width="0.7" opacity="0.4"/>
+  <!-- Pulse ring around brain -->
+  <ellipse cx="100" cy="91" rx="56" ry="58" fill="none" stroke="#6d28d9" stroke-width="0.4" opacity="0.12"/>
+  <!-- Data stream from brain bottom -->
+  <circle cx="94" cy="156" r="1.5" fill="#10b981" opacity="0.3"/>
+  <circle cx="100" cy="160" r="1.5" fill="#10b981" opacity="0.25"/>
+  <circle cx="106" cy="156" r="1.5" fill="#10b981" opacity="0.3"/>
+</svg>
